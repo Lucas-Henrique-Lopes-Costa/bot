@@ -1,0 +1,28 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generate-credentials.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^9.0.3",
+    "axios": "^1.7.7",
+    "chrome-launcher": "^1.1.2",
+    "express": "^4.21.0",
+    "googleapis": "^144.0.0",
+    "https": "^1.0.0",
+    "puppeteer": "^23.4.1",
+    "puppeteer-core": "^23.4.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-proxy": "^1.0.2",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "user-agents": "^1.1.325"
+  }
+}
