@@ -17,7 +17,7 @@ puppeteer.use(StealthPlugin());
 
 let error = "";
 
-const sheets = ["13cQcChKU-9a7MEmMz9qw1w2pLPxI4KfD5mHg5tVLwcY"];
+const sheets = ["1_DycuMIRriWswO05PnMM1pxK6H3xQDyI0GO58tWawMI"]; // CONFERIR
 
 const current_sheet = sheets[Number(sheet_index)];
 
@@ -318,7 +318,7 @@ const setupBrowser = async () => {
       "--no-sandbox",
       "--disable-setuid-sandbox",
       "--disable-dev-shm-usage",
-      "--proxy-server=na.f51a3d78d537749c.abcproxy.vip:4950",
+      "--proxy-server=na.mrydtl5u.lunaproxy.net:12233",
     ],
   });
 
@@ -327,8 +327,8 @@ const setupBrowser = async () => {
   page.setDefaultTimeout(60000);
 
   await page.authenticate({
-    username: "0D17hE3ZpM-zone-star-region-BR",
-    password: "66988595",
+    username: "user-guigui_O7yaG-region-br",
+    password: "159753acessoLu",
   });
 
   await page.setUserAgent(userAgent);
