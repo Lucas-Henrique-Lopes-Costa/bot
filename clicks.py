@@ -31,12 +31,13 @@ links = [
     "https://jonbet.cxclick.com/visit/?bta=68987&brand=jonbet",
     "https://jonbet.cxclick.com/visit/?bta=68989&brand=jonbet",
     "https://jonbet.cxclick.com/visit/?bta=68996&brand=jonbet",
-    "https://jonbet.cxclick.com/visit/?bta=68990&brand=jonbet"
+    "https://jonbet.cxclick.com/visit/?bta=68990&brand=jonbet",
 ]
+
 
 # Função para criar a extensão de proxy com autenticação
 def create_proxy_extension(proxy_host, proxy_port, proxy_user, proxy_pass):
-    pluginfile = f'proxy_auth_plugin_{random.randint(10000, 99999)}.zip'
+    pluginfile = f"proxy_auth_plugin_{random.randint(10000, 99999)}.zip"
     manifest_json = """
     {
         "version": "1.0.0",
@@ -57,7 +58,8 @@ def create_proxy_extension(proxy_host, proxy_port, proxy_user, proxy_pass):
         "minimum_chrome_version":"22.0.0"
     }
     """
-    background_js = string.Template("""
+    background_js = string.Template(
+        """
     var config = {
         mode: "fixed_servers",
         rules: {
@@ -85,23 +87,25 @@ def create_proxy_extension(proxy_host, proxy_port, proxy_user, proxy_pass):
         {urls: ["<all_urls>"]},
         ["blocking"]
     );
-    """).substitute(
+    """
+    ).substitute(
         proxy_host=proxy_host,
         proxy_port=proxy_port,
         proxy_user=proxy_user,
-        proxy_pass=proxy_pass
+        proxy_pass=proxy_pass,
     )
-    with zipfile.ZipFile(pluginfile, 'w') as zp:
+    with zipfile.ZipFile(pluginfile, "w") as zp:
         zp.writestr("manifest.json", manifest_json.strip())
         zp.writestr("background.js", background_js.strip())
     return pluginfile
 
+
 # Função para configurar o navegador com um proxy específico do Luna Proxy
 def start_browser_with_proxy(proxy):
     try:
-        credentials, host_port = proxy.split('@')
-        username, password = credentials.split(':')
-        host, port = host_port.split(':')
+        credentials, host_port = proxy.split("@")
+        username, password = credentials.split(":")
+        host, port = host_port.split(":")
     except Exception as e:
         print(f"Formato de proxy inválido: {e}")
         return None
@@ -118,10 +122,12 @@ def start_browser_with_proxy(proxy):
 
     return driver
 
+
 # Função para gerar um delay aleatório entre 5 e 20 segundos
 def random_delay(min_seconds=5, max_seconds=20):
     delay = random.uniform(min_seconds, max_seconds)
     time.sleep(delay)
+
 
 # Função para acessar os links com delay aleatório em loop infinito
 def simulate_clicks():
@@ -150,7 +156,9 @@ def simulate_clicks():
                     break  # Sai do loop de proxies após o sucesso
                 except Exception as e:
                     print(f"Erro ao acessar o link: {e}")
-                    driver.quit()  # Fecha o navegador se houver erro
+                    if "driver" in locals():
+                        driver.quit()  # Fecha o navegador se houver erro
+
 
 # Executa a função
 simulate_clicks()
